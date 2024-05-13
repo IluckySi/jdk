@@ -97,7 +97,7 @@ main(int argc, char **argv)
             jargv = (char **) const_jargs;
          }
     }
-
+    fprintf(stderr, "Ilucky...Test...");
     JLI_InitArgProcessing(jargc > 0, const_disable_argfile);
 
 #ifdef _WIN32
