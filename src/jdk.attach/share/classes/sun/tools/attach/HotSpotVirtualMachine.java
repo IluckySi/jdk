@@ -96,7 +96,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
         }
 
         String msgPrefix = "return code: ";
-        // TODO: 核心方法
+        // TODO: ilcuky-core method
         InputStream in = execute("load",
                                  agentLibrary,
                                  isAbsolute ? "true" : "false",
