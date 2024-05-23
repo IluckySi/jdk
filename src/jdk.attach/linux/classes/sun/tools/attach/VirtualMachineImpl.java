@@ -61,7 +61,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         if (pid < 1) {
             throw new AttachNotSupportedException("Invalid process identifier: " + vmid);
         }
-        System.out.println("Ilucky...VirtualMachineImpl...pid="+pid)
+        System.out.println("Ilucky...VirtualMachineImpl...pid="+pid);
 
         // Try to resolve to the "inner most" pid namespace
         int ns_pid = getNamespacePid(pid);
@@ -71,7 +71,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // Then we attempt to find the socket file again.
         File socket_file = findSocketFile(pid, ns_pid);
         socket_path = socket_file.getPath();
-        System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path)
+        System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path);
         if (!socket_file.exists()) {
             // Keep canonical version of File, to delete, in case target process ends and /proc link has gone:
             File f = createAttachFile(pid, ns_pid).getCanonicalFile();

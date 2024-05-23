@@ -204,7 +204,7 @@ public abstract class VirtualMachine {
         }
         AttachNotSupportedException lastExc = null;
         for (AttachProvider provider: providers) {
-            System.out.println("Ilucky...VirtualMachine.attach...provider="+provider)
+            System.out.println("Ilucky...VirtualMachine.attach...provider="+provider);
             try {
                 return provider.attachVirtualMachine(id);
             } catch (AttachNotSupportedException x) {
