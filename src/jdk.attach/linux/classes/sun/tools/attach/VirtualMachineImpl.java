@@ -141,7 +141,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
     InputStream execute(String cmd, Object ... args) throws AgentLoadException, IOException {
         assert args.length <= 3;                // includes null
         checkNulls(args);
-        fprintf(stderr, "Ilucky...Test...execute...cmd=%s, args=%s...\r\n", cmd, args);
+        System.out.println("Ilucky...Test...execute...cmd="+cmd+", args="+args)
         // did we detach?
         synchronized (this) {
             if (socket_path == null) {
@@ -152,7 +152,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // create UNIX socket
         int s = socket();
 
-        fprintf(stderr, "Ilucky...Test...connect...s=%d, socket_path=%s...\r\n", s, socket_path);
+        System.out.println("Ilucky...Test...execute...s="+s+", socket_path="+socket_path)
         // connect to target VM
         try {
             connect(s, socket_path);

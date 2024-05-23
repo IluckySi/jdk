@@ -131,8 +131,8 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
     public void loadAgentPath(String agentLibrary, String options)
         throws AgentLoadException, AgentInitializationException, IOException
     {
-        fprintf(stderr, "Ilucky...Test...loadAgentPath...\r\n");
-        fprintf(stderr, "Ilucky...Test...loadAgentPath: agentLibrary=%s, options=%s...\r\n", agentLibrary, options);
+        System.out.println("Ilucky...Test...loadAgentPath...\r\n");
+        System.out.println("Ilucky...Test...loadAgentPath: agentLibrary="+agentLibrary+", options="+options);
         loadAgentLibrary(agentLibrary, true, options);
     }
 
