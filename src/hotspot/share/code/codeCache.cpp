@@ -1831,18 +1831,18 @@ void CodeCache::write_perf_map() {
     log_warning(codecache)("Failed to create %s for perf map", fname);
     return;
   }
-
-  AllCodeBlobsIterator iter(AllCodeBlobsIterator::only_not_unloading);
-  while (iter.next()) {
-    CodeBlob *cb = iter.method();
-    ResourceMark rm;
-    const char* method_name =
-      cb->is_compiled() ? cb->as_compiled_method()->method()->external_name()
-                        : cb->name();
-    fs.print_cr(INTPTR_FORMAT " " INTPTR_FORMAT " %s",
-                (intptr_t)cb->code_begin(), (intptr_t)cb->code_size(),
-                method_name);
-  }
+// TODO: 调试-注释
+//  AllCodeBlobsIterator iter(AllCodeBlobsIterator::only_not_unloading);
+//  while (iter.next()) {
+//    CodeBlob *cb = iter.method();
+//    ResourceMark rm;
+//    const char* method_name =
+//      cb->is_compiled() ? cb->as_compiled_method()->method()->external_name()
+//                        : cb->name();
+//    fs.print_cr(INTPTR_FORMAT " " INTPTR_FORMAT " %s",
+//                (intptr_t)cb->code_begin(), (intptr_t)cb->code_size(),
+//                method_name);
+//  }
 }
 #endif // LINUX
 
