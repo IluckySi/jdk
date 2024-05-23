@@ -75,10 +75,11 @@ JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_connect
   (JNIEnv *env, jclass cls, jint fd, jstring path)
 {
     fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...\r\n");
-    fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...JNIEnv=%p, cls=%s, fd=%d, path=%s\r\n",env->as_string(), cls->as_string(), fd, path);
+    printf(&env);
+    printf(cls);
     jboolean isCopy;
     const char* p = GetStringPlatformChars(env, path, &isCopy);
-     fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...p=%s\r\n", p);
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...p=%s\r\n", p);
     if (p != NULL) {
         struct sockaddr_un addr;
         int err = 0;
