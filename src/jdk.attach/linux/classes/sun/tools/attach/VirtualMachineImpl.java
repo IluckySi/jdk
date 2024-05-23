@@ -119,7 +119,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         int s = socket();
         System.out.println("Ilucky...VirtualMachineImpl...s="+s);
         try {
-            connect(s, socket_path);
+            connect(s, socket_path);  // Ilucky...VirtualMachineImpl.c.connect...
         } finally {
             close(s);
         }
