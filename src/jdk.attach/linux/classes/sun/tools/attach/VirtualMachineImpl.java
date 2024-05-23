@@ -61,6 +61,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         if (pid < 1) {
             throw new AttachNotSupportedException("Invalid process identifier: " + vmid);
         }
+        System.out.println("Ilucky...VirtualMachineImpl...pid="+pid)
 
         // Try to resolve to the "inner most" pid namespace
         int ns_pid = getNamespacePid(pid);
@@ -70,6 +71,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // Then we attempt to find the socket file again.
         File socket_file = findSocketFile(pid, ns_pid);
         socket_path = socket_file.getPath();
+        System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path)
         if (!socket_file.exists()) {
             // Keep canonical version of File, to delete, in case target process ends and /proc link has gone:
             File f = createAttachFile(pid, ns_pid).getCanonicalFile();
@@ -141,7 +143,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
     InputStream execute(String cmd, Object ... args) throws AgentLoadException, IOException {
         assert args.length <= 3;                // includes null
         checkNulls(args);
-        System.out.println("Ilucky...Test...execute...cmd="+cmd+", args="+args);
+        System.out.println("Ilucky...VirtualMacheineImpl.execute...cmd="+cmd+", args="+args); // Ilucky...Test...execute...cmd=load, args=[Ljava.lang.Object;@6325a3ee
         // did we detach?
         synchronized (this) {
             if (socket_path == null) {
@@ -152,7 +154,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // create UNIX socket
         int s = socket();
 
-        System.out.println("Ilucky...Test...execute...s="+s+", socket_path="+socket_path);
+        System.out.println("Ilucky...VirtualMacheineImpl.execute...s="+s+", socket_path="+socket_path); // Ilucky...Test...execute...s=5, socket_path=/proc/385695/root/tmp/.java_pid385695
         // connect to target VM
         try {
             connect(s, socket_path);
