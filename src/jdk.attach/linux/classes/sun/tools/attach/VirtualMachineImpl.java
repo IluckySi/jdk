@@ -65,7 +65,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
 
         // Try to resolve to the "inner most" pid namespace
         int ns_pid = getNamespacePid(pid);
-        System.out.println("Ilucky...VirtualMachineImpl...ns_pid="+ns_pid);
+        System.out.println("Ilucky...VirtualMachineImpl...ns_pid="+ns_pid); // Ilucky...VirtualMachineImpl...ns_pid=385695
 
         // Find the socket file. If not found then we attempt to start the
         // attach mechanism in the target VM by sending it a QUIT signal.
@@ -117,7 +117,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // - this ensures we throw the permission denied error now rather than
         // later when we attempt to enqueue a command.
         int s = socket();
-        System.out.println("Ilucky...VirtualMachineImpl...s="+s);
+        System.out.println("Ilucky...VirtualMachineImpl...s="+s); // Ilucky...VirtualMachineImpl...s=5
         try {
             connect(s, socket_path);  // Ilucky...VirtualMachineImpl.c.connect...
         } finally {
@@ -145,7 +145,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
     InputStream execute(String cmd, Object ... args) throws AgentLoadException, IOException {
         assert args.length <= 3;                // includes null
         checkNulls(args);
-        System.out.println("Ilucky...VirtualMacheineImpl.execute...cmd="+cmd+", args="+args); // Ilucky...Test...execute...cmd=load, args=[Ljava.lang.Object;@6325a3ee
+        System.out.println("Ilucky...VirtualMacheineImpl.execute...cmd="+cmd+", args="+args); // Ilucky...VirtualMacheineImpl.execute...cmd=load, args=[Ljava.lang.Object;@6325a3ee
         // did we detach?
         synchronized (this) {
             if (socket_path == null) {
@@ -156,10 +156,10 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // create UNIX socket
         int s = socket();
 
-        System.out.println("Ilucky...VirtualMacheineImpl.execute...s="+s+", socket_path="+socket_path); // Ilucky...Test...execute...s=5, socket_path=/proc/385695/root/tmp/.java_pid385695
+        System.out.println("Ilucky...VirtualMacheineImpl.execute...s="+s+", socket_path="+socket_path); // Ilucky...VirtualMacheineImpl.execute...s=5, socket_path=/proc/385695/root/tmp/.java_pid385695
         // connect to target VM
         try {
-            connect(s, socket_path);
+            connect(s, socket_path);  // Ilucky: core method
         } catch (IOException x) {
             close(s);
             throw x;

@@ -96,14 +96,14 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
         }
 
         String msgPrefix = "return code: ";
-        // TODO: ilcuky-core method
+        // TODO: ilcuky-core method -> VirtualMachineImpl.c...
         InputStream in = execute("load",
                                  agentLibrary,
                                  isAbsolute ? "true" : "false",
                                  options);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
             String result = reader.readLine();
-            System.out.println("Ilucky...Test...loadAgentLibrary...result="+result);
+            System.out.println("Ilucky...loadAgentLibrary...result="+result); // Ilucky...loadAgentLibrary...result=return code: 0
             if (result == null) {
                 throw new AgentLoadException("Target VM did not respond");
             } else if (result.startsWith(msgPrefix)) {
@@ -132,8 +132,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
     public void loadAgentPath(String agentLibrary, String options)
         throws AgentLoadException, AgentInitializationException, IOException
     {
-        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath...\r\n");
-        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath....agentLibrary="+agentLibrary+", options="+options);
+        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath....agentLibrary="+agentLibrary+", options="+options); // Ilucky...HotSpotVirtualMachine.loadAgentPath....agentLibrary=/data/ilucky/jvm/perf-map-agent/out/libperfmap.so, options=
         loadAgentLibrary(agentLibrary, true, options);
     }
 

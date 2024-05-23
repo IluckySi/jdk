@@ -74,10 +74,11 @@ JNIEXPORT jint JNICALL Java_sun_tools_attach_VirtualMachineImpl_socket
 JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_connect
   (JNIEnv *env, jclass cls, jint fd, jstring path)
 {
-    fprintf(stderr, "Ilucky...VirtualMachineImpl.c...");
-    // fprintf(stderr, "Ilucky...VirtualMachineImpl.c...JNIEnv=%p, cls=%p, fd=%d, path=%c\r\n",env, cls, fd, path);
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...\r\n");
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...JNIEnv=%p, cls=%s, fd=%d, path=%s\r\n",env->as_string(), cls->as_string(), fd, path);
     jboolean isCopy;
     const char* p = GetStringPlatformChars(env, path, &isCopy);
+     fprintf(stderr, "Ilucky...VirtualMachineImpl.connect...p=%s\r\n", p);
     if (p != NULL) {
         struct sockaddr_un addr;
         int err = 0;
@@ -87,7 +88,7 @@ JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_connect
         /* strncpy is safe because addr.sun_path was zero-initialized before. */
         strncpy(addr.sun_path, p, sizeof(addr.sun_path) - 1);
 
-        if (connect(fd, (struct sockaddr*)&addr, sizeof(addr)) == -1) {
+        if (connect(fd, (struct sockaddr*)&addr, sizeof(addr)) == -1) {   // Ilucky: linux fun...
             err = errno;
         }
 
