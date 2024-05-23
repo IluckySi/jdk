@@ -61,20 +61,21 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         if (pid < 1) {
             throw new AttachNotSupportedException("Invalid process identifier: " + vmid);
         }
-        System.out.println("Ilucky...VirtualMachineImpl...pid="+pid);
+        System.out.println("Ilucky...VirtualMachineImpl...pid="+pid); // Ilucky...VirtualMachineImpl...pid=385695
 
         // Try to resolve to the "inner most" pid namespace
         int ns_pid = getNamespacePid(pid);
+        System.out.println("Ilucky...VirtualMachineImpl...ns_pid="+ns_pid);
 
         // Find the socket file. If not found then we attempt to start the
         // attach mechanism in the target VM by sending it a QUIT signal.
         // Then we attempt to find the socket file again.
         File socket_file = findSocketFile(pid, ns_pid);
         socket_path = socket_file.getPath();
-        System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path);
+        System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path); // Ilucky...VirtualMachineImpl...socket_path=/proc/385695/root/tmp/.java_pid385695
         if (!socket_file.exists()) {
             // Keep canonical version of File, to delete, in case target process ends and /proc link has gone:
-            File f = createAttachFile(pid, ns_pid).getCanonicalFile();
+            File f = createAttachFile(pid, ns_pid).getCanonicalFile(); // Ilucky...crate file timeout mechanism
             try {
                 sendQuitTo(pid);
 
@@ -116,6 +117,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // - this ensures we throw the permission denied error now rather than
         // later when we attempt to enqueue a command.
         int s = socket();
+        System.out.println("Ilucky...VirtualMachineImpl...s="+s);
         try {
             connect(s, socket_path);
         } finally {

@@ -194,7 +194,7 @@ public abstract class VirtualMachine {
     public static VirtualMachine attach(String id)
         throws AttachNotSupportedException, IOException
     {
-        System.out.println("Ilucky...VirtualMachine.attach...id="+id); // Ilucky...VirtualMachine.attach...id=385695
+        System.out.println("Ilucky...VirtualMachine.attach...pid="+id); // Ilucky...VirtualMachine.attach...id=385695
         if (id == null) {
             throw new NullPointerException("id cannot be null");
         }

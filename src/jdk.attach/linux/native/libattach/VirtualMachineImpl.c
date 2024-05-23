@@ -74,6 +74,7 @@ JNIEXPORT jint JNICALL Java_sun_tools_attach_VirtualMachineImpl_socket
 JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_connect
   (JNIEnv *env, jclass cls, jint fd, jstring path)
 {
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c...JNIEnv=%x, cls=%x, fd=%x, path=%s\r\n",env, cls, fd, path);
     jboolean isCopy;
     const char* p = GetStringPlatformChars(env, path, &isCopy);
     if (p != NULL) {

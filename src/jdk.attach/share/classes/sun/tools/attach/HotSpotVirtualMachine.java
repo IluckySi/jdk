@@ -132,8 +132,8 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
     public void loadAgentPath(String agentLibrary, String options)
         throws AgentLoadException, AgentInitializationException, IOException
     {
-        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath...\r\n"); // I_DEBUG: fullPath = /data/ilucky/jvm/perf-map-agent/out/libperfmap.so
-        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath....agentLibrary="+agentLibrary+", options="+options); // Ilucky...Test...execute...cmd=load, args=[Ljava.lang.Object;@6325a3ee
+        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath...\r\n");
+        System.out.println("Ilucky...HotSpotVirtualMachine.loadAgentPath....agentLibrary="+agentLibrary+", options="+options);
         loadAgentLibrary(agentLibrary, true, options);
     }
 

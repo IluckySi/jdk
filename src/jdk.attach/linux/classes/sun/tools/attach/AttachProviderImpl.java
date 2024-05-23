@@ -49,12 +49,12 @@ public class AttachProviderImpl extends HotSpotAttachProvider {
     public VirtualMachine attachVirtualMachine(String vmid)
         throws AttachNotSupportedException, IOException
     {
-        System.out.println("Ilucky....AttachProviderImpl...vimd="+vmid);
+        System.out.println("Ilucky....AttachProviderImpl...vimd="+vmid); // Ilucky....AttachProviderImpl...vimd=385695
         checkAttachPermission();
 
         // AttachNotSupportedException will be thrown if the target VM can be determined
         // to be not attachable.
-        testAttachable(vmid);
+        testAttachable(vmid);  // TODO: test attachable(1.4 & 5.0是不支持的)
 
         return new VirtualMachineImpl(this, vmid);
     }

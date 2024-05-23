@@ -44,6 +44,7 @@ static jmethodID mid = NULL;
 
 void JNICALL MethodEntry(jvmtiEnv *jvmti, JNIEnv *jni,
                          jthread thread_obj, jmethodID method) {
+  LOG("Ilucky...MethodEntry...")
   if (mid == method) {
     jboolean isVirtual = jni->IsVirtualThread(thread_obj);
     if (isVirtualExpected != isVirtual) {
@@ -58,6 +59,7 @@ void JNICALL MethodEntry(jvmtiEnv *jvmti, JNIEnv *jni,
 void JNICALL MethodExit(jvmtiEnv *jvmti, JNIEnv *jni,
                         jthread thread_obj, jmethodID method,
                         jboolean was_poped_by_exc, jvalue return_value) {
+  LOG("Ilucky...MethodExit...")
   if (mid == method) {
     jboolean isVirtual = jni->IsVirtualThread(thread_obj);
     if (isVirtualExpected != isVirtual) {
