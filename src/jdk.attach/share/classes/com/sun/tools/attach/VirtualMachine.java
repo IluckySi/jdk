@@ -194,7 +194,7 @@ public abstract class VirtualMachine {
     public static VirtualMachine attach(String id)
         throws AttachNotSupportedException, IOException
     {
-        System.out.println("Ilucky...VirtualMachine.attach...id="+id);
+        System.out.println("Ilucky...VirtualMachine.attach...id="+id); // Ilucky...VirtualMachine.attach...id=385695
         if (id == null) {
             throw new NullPointerException("id cannot be null");
         }
@@ -204,7 +204,7 @@ public abstract class VirtualMachine {
         }
         AttachNotSupportedException lastExc = null;
         for (AttachProvider provider: providers) {
-            System.out.println("Ilucky...VirtualMachine.attach...provider="+provider);
+            System.out.println("Ilucky...VirtualMachine.attach...provider="+provider); // Ilucky...VirtualMachine.attach...provider=sun.tools.attach.AttachProviderImpl@32d992b2
             try {
                 return provider.attachVirtualMachine(id);
             } catch (AttachNotSupportedException x) {
