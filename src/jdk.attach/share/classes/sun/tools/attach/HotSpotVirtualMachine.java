@@ -96,6 +96,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
         }
 
         String msgPrefix = "return code: ";
+        // TODO: 核心方法
         InputStream in = execute("load",
                                  agentLibrary,
                                  isAbsolute ? "true" : "false",
@@ -130,6 +131,8 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
     public void loadAgentPath(String agentLibrary, String options)
         throws AgentLoadException, AgentInitializationException, IOException
     {
+        fprintf(stderr, "Ilucky...Test...loadAgentPath...\r\n");
+        fprintf(stderr, "Ilucky...Test...loadAgentPath: agentLibrary=%s, options=%s...\r\n", agentLibrary, options);
         loadAgentLibrary(agentLibrary, true, options);
     }
 
