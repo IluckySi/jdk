@@ -47,6 +47,7 @@
 #include "services/writeableFlags.hpp"
 #include "utilities/debug.hpp"
 #include "utilities/formatBuffer.hpp"
+#include "utilities/defaultStream.hpp"
 
 volatile AttachListenerState AttachListener::_state = AL_NOT_INITIALIZED;
 
@@ -110,6 +111,7 @@ static jint get_properties(AttachOperation* op, outputStream* out, Symbol* seria
 
 // Implementation of "load" command.
 static jint load_agent(AttachOperation* op, outputStream* out) {
+   jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.load_agent...");
   // get agent name and options
   const char* agent = op->arg(0);
   const char* absParam = op->arg(1);
@@ -370,6 +372,7 @@ static AttachOperationFunctionInfo funcs[] = {
 // to the corresponding function to perform the operation.
 
 void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
+ jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.thread_entry...");
   os::set_priority(thread, NearMaxPriority);
 
   assert(thread == Thread::current(), "Must be");
@@ -383,6 +386,7 @@ void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
   AttachListener::set_initialized();
 
   for (;;) {
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...");
     AttachOperation* op = AttachListener::dequeue();
     if (op == nullptr) {
       AttachListener::set_state(AL_NOT_INITIALIZED);
