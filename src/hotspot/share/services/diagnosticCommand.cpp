@@ -287,8 +287,9 @@ void JVMTIDataDumpDCmd::execute(DCmdSource source, TRAPS) {
 
 #if INCLUDE_SERVICES
 #if INCLUDE_JVMTI
-JVMTIAgentLoadDCmd::JVMTIAgentLoadDCmd(outputStream* output, bool heap) :
+JVMTIAgentLoadDCmd::JVMTIAgentLoadDCmd(outputStream* output, bool heap) :  // TODO: Ilucky: register_DCmdFactory: DCmdFactory::register_DCmdFactory(new DCmdFactoryImpl<JVMTIAgentLoadDCmd>(full_export, true, false));
                                        DCmdWithParser(output, heap),
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.JVMTIAgentLoadDCmd...");
   _libpath("library path", "Absolute path of the JVMTI agent to load.",
            "STRING", true),
   _option("agent option", "Option string to pass the agent.", "STRING", false) {
@@ -297,7 +298,7 @@ JVMTIAgentLoadDCmd::JVMTIAgentLoadDCmd(outputStream* output, bool heap) :
 }
 
 void JVMTIAgentLoadDCmd::execute(DCmdSource source, TRAPS) {
-
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.execute...");
   if (_libpath.value() == nullptr) {
     output()->print_cr("JVMTI.agent_load dcmd needs library path.");
     return;
@@ -330,6 +331,7 @@ void JVMTIAgentLoadDCmd::execute(DCmdSource source, TRAPS) {
       os::free(opt);
     }
   } else {
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.load_agent...");
     JvmtiAgentList::load_agent(_libpath.value(), "true", _option.value(), output());
   }
 }

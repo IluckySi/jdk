@@ -183,6 +183,7 @@ static void load_agents(JvmtiAgentList::Iterator& it) {
 // Invokes Agent_OnLoad for -agentlib:.. -agentpath:  and converted -Xrun agents.
 // Called very early -- before JavaThreads exist
 void JvmtiAgentList::load_agents() {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgentList.cpp.load_agents...Invokes Agent_OnLoad for -agentlib:.. -agentpath:  and converted -Xrun agents\n");
   // Convert -Xrun to -agentlib: if there is no JVM_OnLoad
   convert_xrun_agents();
   JvmtiPhaseTransition transition;
@@ -200,10 +201,11 @@ void JvmtiAgentList::load_xrun_agents() {
 // Invokes Agent_OnAttach for agents loaded dynamically during runtime.
 jint JvmtiAgentList::load_agent(const char* agent_name, const char* absParam,
                            const char* options, outputStream* st) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgentList.cpp.load_agent...Invokes Agent_OnAttach for agents loaded dynamically during runtime\n");
   // The abs parameter should be "true" or "false"
   const bool is_absolute_path = (absParam != nullptr) && (strcmp(absParam, "true") == 0);
   JvmtiAgent* const agent = new JvmtiAgent(agent_name, options, is_absolute_path, /* dynamic agent */ true);
-  if (agent->load(st)) {
+  if (agent->load(st)) { // TODO: Ilucky: core method
     add(agent);
   } else {
     delete agent;

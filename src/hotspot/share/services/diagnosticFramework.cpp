@@ -382,7 +382,7 @@ bool DCmdFactory::_has_pending_jmx_notification = false;
 
 void DCmd::parse_and_execute(DCmdSource source, outputStream* out,
                              const char* cmdline, char delim, TRAPS) {
-
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticFramework.cpp.parse_and_execute...\n");
   if (cmdline == nullptr) return; // Nothing to do!
   DCmdIter iter(cmdline, '\n');
 

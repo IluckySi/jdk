@@ -217,6 +217,7 @@ void JfrDCmd::parse(CmdLine* line, char delim, TRAPS) {
 }
 
 void JfrDCmd::execute(DCmdSource source, TRAPS) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jfrDcmds.cpp.execute...\n");
   if (invalid_state(output(), THREAD)) {
     return;
   }

@@ -670,7 +670,7 @@ static bool invoke_Agent_OnLoad(JvmtiAgent* agent) {
   return true;
 }
 
-bool JvmtiAgent::load(outputStream* st /* nullptr */) {
+bool JvmtiAgent::load(outputStream* st /* nullptr */) {  // TODO: Ilucky: jvmtiAgentList.cpp.load_agent invoke...
   jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load...\n");
   if (is_xrun()) {
     return invoke_JVM_OnLoad(this);
