@@ -528,7 +528,7 @@ extern "C" {
 // Loading the agent by invoking Agent_OnAttach.
 // This function is called before the agent is added to JvmtiAgentList.
 static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
-  jio_fprintf("Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...");
+  fprintf("Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...");
   if (!EnableDynamicAgentLoading) {
     st->print_cr("Dynamic agent loading is not enabled. "
                  "Use -XX:+EnableDynamicAgentLoading to launch target VM.");
@@ -637,7 +637,7 @@ static void check_cds_dump(JvmtiAgent* agent) {
 
 // Loading the agent by invoking Agent_OnLoad.
 static bool invoke_Agent_OnLoad(JvmtiAgent* agent) {
-  jio_fprintf("Ilucky...jvmtiAgent.cpp.invoke_Agent_OnLoad...");
+  fprintf("Ilucky...jvmtiAgent.cpp.invoke_Agent_OnLoad...");
   assert(agent != nullptr, "invariant");
   assert(!agent->is_xrun(), "invariant");
   assert(!agent->is_dynamic(), "invariant");
@@ -662,7 +662,7 @@ static bool invoke_Agent_OnLoad(JvmtiAgent* agent) {
 }
 
 bool JvmtiAgent::load(outputStream* st /* nullptr */) {
-  jio_fprintf("Ilucky...jvmtiAgent.cpp.load...");
+  fprintf("Ilucky...jvmtiAgent.cpp.load...");
   if (is_xrun()) {
     return invoke_JVM_OnLoad(this);
   }
