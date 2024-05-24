@@ -293,13 +293,13 @@ JVMTIAgentLoadDCmd::JVMTIAgentLoadDCmd(outputStream* output, bool heap) :  // TO
   _libpath("library path", "Absolute path of the JVMTI agent to load.",
            "STRING", true),
   _option("agent option", "Option string to pass the agent.", "STRING", false) {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.JVMTIAgentLoadDCmd...");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.JVMTIAgentLoadDCmd...\n");
   _dcmdparser.add_dcmd_argument(&_libpath);
   _dcmdparser.add_dcmd_argument(&_option);
 }
 
 void JVMTIAgentLoadDCmd::execute(DCmdSource source, TRAPS) {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.execute...");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.execute...\n");
   if (_libpath.value() == nullptr) {
     output()->print_cr("JVMTI.agent_load dcmd needs library path.");
     return;
@@ -332,7 +332,7 @@ void JVMTIAgentLoadDCmd::execute(DCmdSource source, TRAPS) {
       os::free(opt);
     }
   } else {
-    jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.load_agent...");
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.load_agent...\n");
     JvmtiAgentList::load_agent(_libpath.value(), "true", _option.value(), output());
   }
 }

@@ -180,6 +180,7 @@ extern "C" {
 // Initialization - create a listener socket and bind it to a file
 
 int LinuxAttachListener::init() {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.init...\n");
   char path[UNIX_PATH_MAX];          // socket file
   char initial_path[UNIX_PATH_MAX];  // socket file during setup
   int listener;                      // listener socket (file descriptor)
@@ -248,6 +249,7 @@ int LinuxAttachListener::init() {
 // means that the attach listener thread is blocked.
 //
 LinuxAttachOperation* LinuxAttachListener::read_request(int s) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.read_request...\n");
   char ver_str[8];
   os::snprintf_checked(ver_str, sizeof(ver_str), "%d", ATTACH_PROTOCOL_VER);
 
@@ -345,6 +347,7 @@ LinuxAttachOperation* LinuxAttachListener::read_request(int s) {
 // cannot queue commands (except at the socket level).
 //
 LinuxAttachOperation* LinuxAttachListener::dequeue() {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.dequeue...\n");
   for (;;) {
     int s;
 
@@ -465,7 +468,7 @@ void AttachListener::vm_start() {
 int AttachListener::pd_init() {
   JavaThread* thread = JavaThread::current();
   ThreadBlockInVM tbivm(thread);
-
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.pd_init...\n");
   int ret_code = LinuxAttachListener::init();
 
   return ret_code;

@@ -111,7 +111,7 @@ static jint get_properties(AttachOperation* op, outputStream* out, Symbol* seria
 
 // Implementation of "load" command.
 static jint load_agent(AttachOperation* op, outputStream* out) {
-   jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.load_agent...");
+   jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.load_agent...\n");
   // get agent name and options
   const char* agent = op->arg(0);
   const char* absParam = op->arg(1);
@@ -372,7 +372,7 @@ static AttachOperationFunctionInfo funcs[] = {
 // to the corresponding function to perform the operation.
 
 void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
- jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.thread_entry...");
+ jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.thread_entry...\n");
   os::set_priority(thread, NearMaxPriority);
 
   assert(thread == Thread::current(), "Must be");
@@ -386,13 +386,13 @@ void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
   AttachListener::set_initialized();
 
   for (;;) {
-    jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...");
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...\n");
     AttachOperation* op = AttachListener::dequeue();
     if (op == nullptr) {
       AttachListener::set_state(AL_NOT_INITIALIZED);
       return;   // dequeue failed or shutdown
     }
-
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...op.name=%s...\n", op->name());
     ResourceMark rm;
     bufferedStream st;
     jint res = JNI_OK;
@@ -405,6 +405,7 @@ void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
       AttachOperationFunctionInfo* info = nullptr;
       for (int i=0; funcs[i].name != nullptr; i++) {
         const char* name = funcs[i].name;
+
         assert(strlen(name) <= AttachOperation::name_length_max, "operation <= name_length_max");
         if (strcmp(op->name(), name) == 0) {
           info = &(funcs[i]);
@@ -445,7 +446,7 @@ bool AttachListener::has_init_error(TRAPS) {
 // Starts the Attach Listener thread
 void AttachListener::init() {
   EXCEPTION_MARK;
-
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.init...\n");
   const char* name = "Attach Listener";
   Handle thread_oop = JavaThread::create_system_thread_object(name, THREAD);
   if (has_init_error(THREAD)) {
@@ -453,7 +454,7 @@ void AttachListener::init() {
     return;
   }
 
-  JavaThread* thread = new AttachListenerThread();
+  JavaThread* thread = new AttachListenerThread(); // TODO: Ilucky...
   JavaThread::vm_exit_on_osthread_failure(thread);
 
   JavaThread::start_internal_daemon(THREAD, thread, thread_oop, NoPriority);
