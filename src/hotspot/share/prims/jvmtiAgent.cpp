@@ -291,7 +291,7 @@ static void assert_preload(const JvmtiAgent* agent) {
 // statically linked agents could have a handle of RTLD_DEFAULT which == 0 on some platforms.
 // If this function returns true, then agent->is_static_lib() && agent->is_loaded().
 static bool load_agent_from_executable(JvmtiAgent* agent, const char* on_load_symbols[], size_t num_symbol_entries) {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load_agent_from_executable...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load_agent_from_executable...\n"); // Ilucky...jvmtiAgent.cpp.load_agent_from_executable...
   DEBUG_ONLY(assert_preload(agent);)
   assert(on_load_symbols != nullptr, "invariant");
   return os::find_builtin_agent(agent, &on_load_symbols[0], num_symbol_entries);
@@ -537,7 +537,7 @@ extern "C" {
 // Loading the agent by invoking Agent_OnAttach.
 // This function is called before the agent is added to JvmtiAgentList.
 static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...\n"); // Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...
   if (!EnableDynamicAgentLoading) {
     st->print_cr("Dynamic agent loading is not enabled. "
                  "Use -XX:+EnableDynamicAgentLoading to launch target VM.");
@@ -554,6 +554,7 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
   if (load_agent_from_executable(agent, &on_attach_symbols[0], num_symbol_entries)) {
     previously_loaded = JvmtiAgentList::is_static_lib_loaded(agent->name());
   } else {
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load_library...\n");
     library = load_library(agent, &on_attach_symbols[0], num_symbol_entries, /* vm_exit_on_error */ false);
     if (library == nullptr) {
       st->print_cr("%s was not loaded.", agent->name());
@@ -590,6 +591,7 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
     unload_library(agent, library);
     return false;
   }
+  jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...on_attach_entry->name()=%s", on_attach_entry->name())
 
   // Invoke the Agent_OnAttach function
   JavaThread* thread = JavaThread::current();
@@ -601,7 +603,9 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
 
     agent->initialization_begin();
 
-    result = (*on_attach_entry)(&main_vm, (char*)agent->options(), nullptr);
+    jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...agent->options=%s", (char*)agent->options())
+
+    result = (*on_attach_entry)(&main_vm, (char*)agent->options(), nullptr);  // TODO: Ilucky...
 
     agent->initialization_end();
 
@@ -624,7 +628,7 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
   }
 
   if (agent->is_instrument_lib()) {
-    // Convert the instrument lib to the actual JPLIS / javaagent it represents.
+    // Convert the instrument lib to the actual JPLIS / javaagent it represents. // TODO: Ilucky...
     convert_to_jplis(agent);
   }
   return true;
@@ -670,12 +674,12 @@ static bool invoke_Agent_OnLoad(JvmtiAgent* agent) {
   return true;
 }
 
-bool JvmtiAgent::load(outputStream* st /* nullptr */) {  // TODO: Ilucky: jvmtiAgentList.cpp.load_agent invoke...
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load...\n");
+bool JvmtiAgent::load(outputStream* st /* nullptr */) {  // Ilucky...jvmtiAgentList.cpp.load_agent...
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgent.cpp.load...\n"); // Ilucky...jvmtiAgent.cpp.load...
   if (is_xrun()) {
     return invoke_JVM_OnLoad(this);
   }
-  return is_dynamic() ? invoke_Agent_OnAttach(this, st) : invoke_Agent_OnLoad(this);
+  return is_dynamic() ? invoke_Agent_OnAttach(this, st) : invoke_Agent_OnLoad(this); // Ilucky...invoke_Agent_OnAttach
 }
 
 extern "C" {

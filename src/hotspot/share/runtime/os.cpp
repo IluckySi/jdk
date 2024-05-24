@@ -362,6 +362,7 @@ bool os::dll_locate_lib(char *buffer, size_t buflen,
 
 
 static void signal_thread_entry(JavaThread* thread, TRAPS) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...os.cpp.signal_thread_entry...\n");
   os::set_priority(thread, NearMaxPriority);
   while (true) {
     int sig;
@@ -381,6 +382,7 @@ static void signal_thread_entry(JavaThread* thread, TRAPS) {
 #if INCLUDE_SERVICES
         // Check if the signal is a trigger to start the Attach Listener - in that
         // case don't print stack traces.
+        jio_fprintf(defaultStream::error_stream(),"Ilucky...os.cpp.DisableAttachMechanism...\n");
         if (!DisableAttachMechanism) {
           // Attempt to transit state to AL_INITIALIZING.
           AttachListenerState cur_state = AttachListener::transit_state(AL_INITIALIZING, AL_NOT_INITIALIZED);
@@ -398,9 +400,10 @@ static void signal_thread_entry(JavaThread* thread, TRAPS) {
               // So we need to transit the state to AL_NOT_INITIALIZED.
               AttachListener::set_state(AL_NOT_INITIALIZED);
             }
-          } else if (AttachListener::check_socket_file()) {
+          } else if (AttachListener::check_socket_file()) { // Ilucky...check_socket_file...
             // Attach Listener has been started, but unix domain socket file
             // does not exist. So restart Attach Listener.
+            jio_fprintf(defaultStream::error_stream(),"Ilucky...os.cpp.check_socket_file...\n");
             continue;
           }
         }

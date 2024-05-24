@@ -181,7 +181,7 @@ extern "C" {
 // Initialization - create a listener socket and bind it to a file
 
 int LinuxAttachListener::init() {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.init...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.init...\n"); // Ilucky...attachListener_linux.cpp.init...
   char path[UNIX_PATH_MAX];          // socket file
   char initial_path[UNIX_PATH_MAX];  // socket file during setup
   int listener;                      // listener socket (file descriptor)
@@ -202,7 +202,7 @@ int LinuxAttachListener::init() {
   }
 
   // create the listener socket
-  listener = ::socket(PF_UNIX, SOCK_STREAM, 0);
+  listener = ::socket(PF_UNIX, SOCK_STREAM, 0);  // Ilucky....socket...
   if (listener == -1) {
     return -1;
   }
@@ -250,7 +250,7 @@ int LinuxAttachListener::init() {
 // means that the attach listener thread is blocked.
 //
 LinuxAttachOperation* LinuxAttachListener::read_request(int s) {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.read_request...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.read_request...\n"); // Ilucky...ttachListener_linux.cpp.read_request...
   char ver_str[8];
   os::snprintf_checked(ver_str, sizeof(ver_str), "%d", ATTACH_PROTOCOL_VER);
 
@@ -348,7 +348,7 @@ LinuxAttachOperation* LinuxAttachListener::read_request(int s) {
 // cannot queue commands (except at the socket level).
 //
 LinuxAttachOperation* LinuxAttachListener::dequeue() {
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...ttachListener_linux.cpp.dequeue...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.dequeue...\n"); // Ilucky...attachListener_linux.cpp.dequeue...
   for (;;) {
     int s;
 
@@ -377,7 +377,7 @@ LinuxAttachOperation* LinuxAttachListener::dequeue() {
     }
 
     // peer credential look okay so we read the request
-    LinuxAttachOperation* op = read_request(s);
+    LinuxAttachOperation* op = read_request(s);  // Ilucky...read_request...
     if (op == nullptr) {
       ::close(s);
       continue;
@@ -469,13 +469,14 @@ void AttachListener::vm_start() {
 int AttachListener::pd_init() {
   JavaThread* thread = JavaThread::current();
   ThreadBlockInVM tbivm(thread);
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.pd_init...\n");
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.pd_init...\n"); // Ilucky...ttachListener_linux.cpp.init...
   int ret_code = LinuxAttachListener::init();
 
   return ret_code;
 }
 
 bool AttachListener::check_socket_file() {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.check_socket_file...\n");
   int ret;
   struct stat64 st;
   ret = stat64(LinuxAttachListener::path(), &st);
@@ -494,7 +495,7 @@ bool AttachListener::check_socket_file() {
         os::naked_yield();
       }
     }
-    return is_init_trigger();
+    return is_init_trigger(); // Ilucky...is_init_trigger...
   }
   return false;
 }
@@ -512,6 +513,7 @@ bool AttachListener::init_at_startup() {
 // If the file .attach_pid<pid> exists in the working directory
 // or /tmp then this is the trigger to start the attach mechanism
 bool AttachListener::is_init_trigger() {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.is_init_trigger...\n");
   if (init_at_startup() || is_initialized()) {
     return false;               // initialized at startup or already initialized
   }
@@ -533,7 +535,8 @@ bool AttachListener::is_init_trigger() {
     // simple check to avoid starting the attach mechanism when
     // a bogus non-root user creates the file
     if (os::Posix::matches_effective_uid_or_root(st.st_uid)) {
-      init();
+      jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener_linux.cpp.init...\n");
+      init();  // Ilucky...init...
       log_trace(attach)("Attach triggered by %s", fn);
       return true;
     } else {

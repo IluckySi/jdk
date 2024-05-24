@@ -206,7 +206,7 @@ jint JvmtiAgentList::load_agent(const char* agent_name, const char* absParam,
   // The abs parameter should be "true" or "false"
   const bool is_absolute_path = (absParam != nullptr) && (strcmp(absParam, "true") == 0);
   JvmtiAgent* const agent = new JvmtiAgent(agent_name, options, is_absolute_path, /* dynamic agent */ true);
-  if (agent->load(st)) { // TODO: Ilucky: core method
+  if (agent->load(st)) { // Ilucky...load...
     add(agent);
   } else {
     delete agent;
@@ -237,6 +237,7 @@ bool JvmtiAgentList::is_static_lib_loaded(const char* name) {
 
 // Return true if a agent library on the list
 bool JvmtiAgentList::is_dynamic_lib_loaded(void* os_lib) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...jvmtiAgentList.cpp.is_dynamic_lib_loaded...\n");
   JvmtiAgentList::Iterator it = JvmtiAgentList::agents();
   while (it.has_next()) {
     JvmtiAgent* const agent = it.next();
