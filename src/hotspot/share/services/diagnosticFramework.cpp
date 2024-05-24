@@ -33,6 +33,7 @@
 #include "services/diagnosticArgument.hpp"
 #include "services/diagnosticFramework.hpp"
 #include "services/management.hpp"
+#include "utilities/defaultStream.hpp"
 
 CmdLine::CmdLine(const char* line, size_t len, bool no_command_name)
   : _cmd(line), _cmd_len(0), _args(nullptr), _args_len(0)

@@ -73,6 +73,7 @@
 #include "mallocInfoDcmd.hpp"
 #include "trimCHeapDCmd.hpp"
 #include <errno.h>
+#include "utilities/defaultStream.hpp"
 #endif
 
 static void loadAgentModule(TRAPS) {

@@ -28,6 +28,7 @@
 #include "prims/jvmtiExport.hpp"
 #include "runtime/atomic.hpp"
 #include "runtime/os.inline.hpp"
+#include "utilities/defaultStream.hpp"
 
 JvmtiAgent* JvmtiAgentList::_list = nullptr;
 
