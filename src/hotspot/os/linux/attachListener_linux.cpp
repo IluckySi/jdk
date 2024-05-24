@@ -30,6 +30,7 @@
 #include "os_posix.hpp"
 #include "services/attachListener.hpp"
 #include "utilities/checkedCast.hpp"
+#include "utilities/defaultStream.hpp"
 
 #include <unistd.h>
 #include <signal.h>
