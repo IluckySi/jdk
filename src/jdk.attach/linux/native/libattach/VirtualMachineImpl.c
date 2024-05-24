@@ -75,9 +75,9 @@ JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_connect
   (JNIEnv *env, jclass cls, jint fd, jstring path)
 {
     fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...\r\n"); // Ilucky...VirtualMachineImpl.c.connect...
-    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...cls=%p\r\n", (void*)cls);
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...cls=%p\r\n", (void*)cls); // Ilucky...VirtualMachineImpl.c.connect...cls=0x76806ed136e0
     const char *cls_str = (*env)->GetStringUTFChars(env, cls, 0);
-    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...cls=%s\r\n",cls_str);
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...cls=%s\r\n",cls_str); // Ilucky...VirtualMachineImpl.c.connect...cls=(null)
     jboolean isCopy;
     const char* p = GetStringPlatformChars(env, path, &isCopy);
     fprintf(stderr, "Ilucky...VirtualMachineImpl.c.connect...p=%s\r\n", p); // Ilucky...VirtualMachineImpl.c.connect...p=/proc/385695/root/tmp/.java_pid385695
@@ -140,6 +140,7 @@ JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_sendQuitTo
 JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_checkPermissions
   (JNIEnv *env, jclass cls, jstring path)
 {
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.checkPermissions...\r\n");
     jboolean isCopy;
     const char* p = GetStringPlatformChars(env, path, &isCopy);
     if (p != NULL) {
@@ -218,6 +219,7 @@ JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_close
 JNIEXPORT jint JNICALL Java_sun_tools_attach_VirtualMachineImpl_read
   (JNIEnv *env, jclass cls, jint fd, jbyteArray ba, jint off, jint baLen)
 {
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.read...\r\n");
     unsigned char buf[128];
     size_t len = sizeof(buf);
     ssize_t n;
@@ -248,6 +250,7 @@ JNIEXPORT jint JNICALL Java_sun_tools_attach_VirtualMachineImpl_read
 JNIEXPORT void JNICALL Java_sun_tools_attach_VirtualMachineImpl_write
   (JNIEnv *env, jclass cls, jint fd, jbyteArray ba, jint off, jint bufLen)
 {
+    fprintf(stderr, "Ilucky...VirtualMachineImpl.c.write...\r\n");
     size_t remaining = bufLen;
     do {
         unsigned char buf[128];

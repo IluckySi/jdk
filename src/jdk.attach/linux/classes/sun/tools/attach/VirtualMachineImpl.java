@@ -64,7 +64,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         System.out.println("Ilucky...VirtualMachineImpl...pid="+pid); // Ilucky...VirtualMachineImpl...pid=385695
 
         // Try to resolve to the "inner most" pid namespace
-        int ns_pid = getNamespacePid(pid);
+        int ns_pid = getNamespacePid(pid); // TODO: Ilcuky: namespace?
         System.out.println("Ilucky...VirtualMachineImpl...ns_pid="+ns_pid); // Ilucky...VirtualMachineImpl...ns_pid=385695
 
         // Find the socket file. If not found then we attempt to start the
@@ -75,7 +75,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         System.out.println("Ilucky...VirtualMachineImpl...socket_path="+socket_path); // Ilucky...VirtualMachineImpl...socket_path=/proc/385695/root/tmp/.java_pid385695
         if (!socket_file.exists()) {
             // Keep canonical version of File, to delete, in case target process ends and /proc link has gone:
-            File f = createAttachFile(pid, ns_pid).getCanonicalFile(); // Ilucky...crate file timeout mechanism
+            File f = createAttachFile(pid, ns_pid).getCanonicalFile(); // TODO: Ilucky...crate file timeout mechanism
             try {
                 sendQuitTo(pid);
 
@@ -111,7 +111,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
 
         // Check that the file owner/permission to avoid attaching to
         // bogus process
-        checkPermissions(socket_path);
+        checkPermissions(socket_path); // TODO: Ilucky
 
         // Check that we can connect to the process
         // - this ensures we throw the permission denied error now rather than
@@ -119,7 +119,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         int s = socket();
         System.out.println("Ilucky...VirtualMachineImpl...s="+s); // Ilucky...VirtualMachineImpl...s=5
         try {
-            connect(s, socket_path);  // Ilucky...VirtualMachineImpl.c.connect...
+            connect(s, socket_path);  // TODO: Ilucky...VirtualMachineImpl.c.connect...
         } finally {
             close(s);
         }
@@ -159,7 +159,7 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         System.out.println("Ilucky...VirtualMacheineImpl.execute...s="+s+", socket_path="+socket_path); // Ilucky...VirtualMacheineImpl.execute...s=5, socket_path=/proc/385695/root/tmp/.java_pid385695
         // connect to target VM
         try {
-            connect(s, socket_path);  // Ilucky: core method
+            connect(s, socket_path);  // TODO: Ilucky: core method
         } catch (IOException x) {
             close(s);
             throw x;
@@ -170,11 +170,12 @@ public class VirtualMachineImpl extends HotSpotVirtualMachine {
         // connected - write request
         // <ver> <cmd> <args...>
         try {
-            writeString(s, PROTOCOL_VERSION);
+            writeString(s, PROTOCOL_VERSION);  // TODO: Ilucky: send command to jvm domain socekt....https://cloud.tencent.com/developer/article/2002878, cmd=load xxx  xxx....
             writeString(s, cmd);
 
             for (int i = 0; i < 3; i++) {
                 if (i < args.length && args[i] != null) {
+                    System.out.println("Ilucky...VirtualMacheineImpl.execute...args[i]="+args[i]);
                     writeString(s, (String)args[i]);
                 } else {
                     writeString(s, "");

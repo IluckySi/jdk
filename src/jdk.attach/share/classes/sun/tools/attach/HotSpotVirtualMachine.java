@@ -91,6 +91,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
     private void loadAgentLibrary(String agentLibrary, boolean isAbsolute, String options)
         throws AgentLoadException, AgentInitializationException, IOException
     {
+        System.out.println("Ilucky...loadAgentLibrary...agentLibrary="+agentLibrary+",isAbsolute="+isAbsolute+",options="+options);
         if (agentLibrary == null) {
             throw new NullPointerException("agentLibrary cannot be null");
         }
@@ -108,6 +109,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
                 throw new AgentLoadException("Target VM did not respond");
             } else if (result.startsWith(msgPrefix)) {
                 int retCode = Integer.parseInt(result.substring(msgPrefix.length()));
+                System.out.println("Ilucky...loadAgentLibrary...retCode="+retCode);
                 if (retCode != 0) {
                     throw new AgentInitializationException("Agent_OnAttach failed", retCode);
                 }

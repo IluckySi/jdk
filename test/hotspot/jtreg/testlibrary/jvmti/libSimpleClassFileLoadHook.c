@@ -182,5 +182,6 @@ JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM *jvm, char *options, void *reserved) 
 }
 
 JNIEXPORT jint JNICALL Agent_OnAttach(JavaVM *jvm, char *options, void *reserved) {
+  fprintf("Ilucky...libSimpleClasssFileLoadHook.Agent_OnAttach...")
   return Agent_Initialize(jvm, options, reserved);
 }

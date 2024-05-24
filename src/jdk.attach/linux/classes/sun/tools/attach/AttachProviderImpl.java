@@ -54,7 +54,7 @@ public class AttachProviderImpl extends HotSpotAttachProvider {
 
         // AttachNotSupportedException will be thrown if the target VM can be determined
         // to be not attachable.
-        testAttachable(vmid);  // Ilucky: test attachable(1.4 & 5.0 not support)
+        testAttachable(vmid);  // TODO: Ilucky: test attachable(1.4 & 5.0 not support)
 
         return new VirtualMachineImpl(this, vmid);
     }
