@@ -44,6 +44,7 @@
 #include "services/diagnosticArgument.hpp"
 #include "services/diagnosticFramework.hpp"
 #include "utilities/globalDefinitions.hpp"
+#include "utilities/defaultStream.hpp"
 
 
 bool register_jfr_dcmds() {

@@ -290,10 +290,10 @@ void JVMTIDataDumpDCmd::execute(DCmdSource source, TRAPS) {
 #if INCLUDE_JVMTI
 JVMTIAgentLoadDCmd::JVMTIAgentLoadDCmd(outputStream* output, bool heap) :  // TODO: Ilucky: register_DCmdFactory: DCmdFactory::register_DCmdFactory(new DCmdFactoryImpl<JVMTIAgentLoadDCmd>(full_export, true, false));
                                        DCmdWithParser(output, heap),
-  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.JVMTIAgentLoadDCmd...");
   _libpath("library path", "Absolute path of the JVMTI agent to load.",
            "STRING", true),
   _option("agent option", "Option string to pass the agent.", "STRING", false) {
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...diagnosticCommand.cpp.JVMTIAgentLoadDCmd...");
   _dcmdparser.add_dcmd_argument(&_libpath);
   _dcmdparser.add_dcmd_argument(&_option);
 }

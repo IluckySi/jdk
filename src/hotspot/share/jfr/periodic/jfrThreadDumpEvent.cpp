@@ -29,6 +29,7 @@
 #include "logging/log.hpp"
 #include "utilities/exceptions.hpp"
 #include "utilities/ostream.hpp"
+#include "utilities/defaultStream.hpp"
 
 /**
 *  Worker impl for generating and writing dcmd commands
