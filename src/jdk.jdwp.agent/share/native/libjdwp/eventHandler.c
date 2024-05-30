@@ -68,6 +68,7 @@
 #include "commonRef.h"
 #include "debugLoop.h"
 #include "signature.h"
+#include "src/hotspot/share/utilities/defaultStream.hpp"
 
 static HandlerID requestIdCounter;
 static jbyte currentSessionID;
@@ -1040,8 +1041,8 @@ static void JNICALL
 cbMethodEntry(jvmtiEnv *jvmti_env, JNIEnv *env,
                         jthread thread, jmethodID method)
 {
-    // jio_fprintf(defaultStream::error_stream(),"Ilucky...eventHandler.c.cbMethodEntry...\n");
-    LOG_MISC(("Ilucky...eventHandler.c.cbMethodEntry...\n"));
+    jio_fprintf(defaultStream::error_stream(),"Ilucky...eventHandler.c.cbMethodEntry...\n");
+    // LOG_MISC(("Ilucky...eventHandler.c.cbMethodEntry...\n"));
     EventInfo info;
 
     LOG_CB(("cbMethodEntry: thread=%p", thread));
