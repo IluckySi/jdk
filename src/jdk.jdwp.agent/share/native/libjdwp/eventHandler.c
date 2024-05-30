@@ -68,6 +68,7 @@
 #include "commonRef.h"
 #include "debugLoop.h"
 #include "signature.h"
+#include "utilities/defaultStream.hpp"
 
 static HandlerID requestIdCounter;
 static jbyte currentSessionID;
