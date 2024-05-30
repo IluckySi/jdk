@@ -968,6 +968,7 @@ static oop invoke(InstanceKlass* klass,
                   bool is_method_invoke,
                   TRAPS) {
 
+  jio_fprintf(defaultStream::error_stream(),"Ilucky...reflection.cpp.invoke...\n");
   ResourceMark rm(THREAD);
 
   methodHandle method;      // actual method to invoke
