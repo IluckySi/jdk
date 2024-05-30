@@ -414,7 +414,7 @@ void AttachListenerThread::thread_entry(JavaThread* thread, TRAPS) {
           break;
         }
       }
-      jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...info->func()=%s...\n", info->func());
+      // jio_fprintf(defaultStream::error_stream(),"Ilucky...attachListener.cpp.for;;...info->func()=%s...\n", info->func());
 
       if (info != nullptr) {
         // dispatch to the function that implements this operation

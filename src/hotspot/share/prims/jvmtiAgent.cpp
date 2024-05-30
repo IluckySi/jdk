@@ -591,7 +591,7 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
     unload_library(agent, library);
     return false;
   }
-  jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...on_attach_entry->name()=%s", on_attach_entry->name())
+  // jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...on_attach_entry->name()=%s", on_attach_entry->name())
 
   // Invoke the Agent_OnAttach function
   JavaThread* thread = JavaThread::current();
@@ -603,7 +603,7 @@ static bool invoke_Agent_OnAttach(JvmtiAgent* agent, outputStream* st) {
 
     agent->initialization_begin();
 
-    jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...agent->options=%s", (char*)agent->options())
+    // jio_fprintf(defaultStream::error_stream(), "Ilucky...jvmtiAgent.cpp.invoke_Agent_OnAttach...agent->options=%s", (char*)agent->options())
 
     result = (*on_attach_entry)(&main_vm, (char*)agent->options(), nullptr);  // TODO: Ilucky...
 
