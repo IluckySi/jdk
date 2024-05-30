@@ -1041,7 +1041,7 @@ cbMethodEntry(jvmtiEnv *jvmti_env, JNIEnv *env,
                         jthread thread, jmethodID method)
 {
     // jio_fprintf(defaultStream::error_stream(),"Ilucky...eventHandler.c.cbMethodEntry...\n");
-    error_message("Ilucky...eventHandler.c.cbMethodEntry...\n")
+    error_message("Ilucky...eventHandler.c.cbMethodEntry...\n");
     // LOG_MISC(("Ilucky...eventHandler.c.cbMethodEntry...\n"));
     EventInfo info;
 
