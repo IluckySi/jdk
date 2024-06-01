@@ -792,6 +792,7 @@ bool ciMethod::can_omit_stack_trace() const {
 // Given a known receiver klass, find the target for the call.
 // Return null if the call has no target or the target is abstract.
 ciMethod* ciMethod::resolve_invoke(ciKlass* caller, ciKlass* exact_receiver, bool check_access, bool allow_abstract) {
+  printf("---------------ciMethod.cpp.resolve_invoke---------------------")
   check_is_loaded();
   VM_ENTRY_MARK;
 
