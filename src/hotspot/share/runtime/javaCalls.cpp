@@ -322,7 +322,8 @@ Handle JavaCalls::construct_new_instance(InstanceKlass* klass, Symbol* construct
 
 
 void JavaCalls::call(JavaValue* result, const methodHandle& method, JavaCallArguments* args, TRAPS) {
-  printf("------------JavaCalls::call name is %s---------------------\n", method->name()->as_C_string());
+  printf("------------JavaCalls::call as_C_string is %s---------------------\n", method->name()->as_C_string());
+  printf("------------JavaCalls::call as_klass_external_name is %s---------------------\n", method->name()->as_klass_external_name());
   // Check if we need to wrap a potential OS exception handler around thread.
   // This is used for e.g. Win32 structured exception handlers.
   // Need to wrap each and every time, since there might be native code down the
