@@ -147,7 +147,7 @@ void CodeInstaller::pd_relocate_ForeignCall(NativeInstruction* inst, jlong forei
 }
 
 void CodeInstaller::pd_relocate_JavaMethod(CodeBuffer &, methodHandle& method, jint pc_offset, JVMCI_TRAPS) {
-  printf("---------------------jvmciCodeInstaller_x86.cpp.pd_relocate_JavaMethod------------------");
+  printf("---------------------jvmciCodeInstaller_x86.cpp.pd_relocate_JavaMethod------------------\n");
   NativeCall* call = nullptr;
   switch (_next_call_type) {
     case INLINE_INVOKE:

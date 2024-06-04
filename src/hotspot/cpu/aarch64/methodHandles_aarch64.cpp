@@ -279,7 +279,7 @@ void MethodHandles::generate_method_handle_dispatch(MacroAssembler* _masm,
                                                     Register receiver_reg,
                                                     Register member_reg,
                                                     bool for_compiler_entry) {
-  printf("-----------------methodHandles_aarch64.cpp.generate_method_handle_dispatch--------------");
+  printf("-----------------methodHandles_aarch64.cpp.generate_method_handle_dispatch--------------\n");
   assert(is_signature_polymorphic(iid), "expected invoke iid");
   // temps used in this code are not used in *either* compiled or interpreted calling sequences
   Register temp1 = r10;

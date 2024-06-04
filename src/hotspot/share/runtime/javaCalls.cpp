@@ -172,7 +172,7 @@ static BasicType runtime_type_from(JavaValue* result) {
 // ============ Virtual calls ============
 
 void JavaCalls::call_virtual(JavaValue* result, Klass* spec_klass, Symbol* name, Symbol* signature, JavaCallArguments* args, TRAPS) {
-  printf(".......javaClass.cpp.JavaCalls::call_virtual...%s",name->as_C_string());
+  printf(".......javaClass.cpp.JavaCalls::call_virtual...%s\n",name->as_C_string());
   CallInfo callinfo;
   Handle receiver = args->receiver();
   Klass* recvrKlass = receiver.is_null() ? (Klass*)nullptr : receiver->klass();
@@ -212,6 +212,7 @@ void JavaCalls::call_virtual(JavaValue* result, Handle receiver, Klass* spec_kla
 // ============ Special calls ============
 
 void JavaCalls::call_special(JavaValue* result, Klass* klass, Symbol* name, Symbol* signature, JavaCallArguments* args, TRAPS) {
+  printf(".......javaClass.cpp.JavaCalls::call_special...%s\n",name->as_C_string());
   CallInfo callinfo;
   LinkInfo link_info(klass, name, signature);
   LinkResolver::resolve_special_call(callinfo, args->receiver(), link_info, CHECK);
@@ -247,6 +248,7 @@ void JavaCalls::call_special(JavaValue* result, Handle receiver, Klass* klass, S
 // ============ Static calls ============
 
 void JavaCalls::call_static(JavaValue* result, Klass* klass, Symbol* name, Symbol* signature, JavaCallArguments* args, TRAPS) {
+  printf(".......javaClass.cpp.JavaCalls::call_static...%s\n",name->as_C_string());
   CallInfo callinfo;
   LinkInfo link_info(klass, name, signature);
   LinkResolver::resolve_static_call(callinfo, link_info, true, CHECK);
@@ -289,6 +291,7 @@ void JavaCalls::call_static(JavaValue* result, Klass* klass, Symbol* name, Symbo
 // ============ allocate and initialize new object instance ============
 
 Handle JavaCalls::construct_new_instance(InstanceKlass* klass, Symbol* constructor_signature, JavaCallArguments* args, TRAPS) {
+  printf(".......javaClass.cpp.JavaCalls::InstanceKlass...\n";
   klass->initialize(CHECK_NH); // Quick no-op if already initialized.
   Handle obj = klass->allocate_instance_handle(CHECK_NH);
   JavaValue void_result(T_VOID);
@@ -333,8 +336,7 @@ void JavaCalls::call(JavaValue* result, const methodHandle& method, JavaCallArgu
 }
 
 void JavaCalls::call_helper(JavaValue* result, const methodHandle& method, JavaCallArguments* args, TRAPS) {
-
-printf("------------JavaCalls::call_helper name is %s---------------------\n", method->name()->as_C_string());
+  // printf("------------JavaCalls::call_helper name is %s---------------------\n", method->name()->as_C_string());
   JavaThread* thread = THREAD;
   assert(method.not_null(), "must have a method to call");
   assert(!SafepointSynchronize::is_at_safepoint(), "call to Java code during VM operation");
