@@ -391,7 +391,7 @@ void Parse::load_interpreter_state(Node* osr_buf) {
 Parse::Parse(JVMState* caller, ciMethod* parse_method, float expected_uses)
   : _exits(caller)
 {
-  printf("------------------parse1.cpp.Parse()------------------\n")
+  printf("------------------parse1.cpp.Parse()------------------\n");
   // Init some variables
   _caller = caller;
   _method = parse_method;
