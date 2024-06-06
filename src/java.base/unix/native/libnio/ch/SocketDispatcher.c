@@ -71,7 +71,7 @@ Java_sun_nio_ch_SocketDispatcher_write0(JNIEnv *env, jclass clazz,
     jint fd = fdval(env, fdo);
     void *buf = (void *)jlong_to_ptr(address);
 
-    return convertReturnVal(env, write(fd, buf, len), JNI_FALSE);
+    ret urn convertReturnVal(env, write(fd, buf, len), JNI_FALSE);
 }
 
 JNIEXPORT jlong JNICALL
