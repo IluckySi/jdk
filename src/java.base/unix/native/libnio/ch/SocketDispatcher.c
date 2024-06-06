@@ -68,16 +68,18 @@ JNIEXPORT jint JNICALL
 Java_sun_nio_ch_SocketDispatcher_write0(JNIEnv *env, jclass clazz,
                                         jobject fdo, jlong address, jint len)
 {
+    printf("---------------SocketDispatcher.c.Java_sun_nio_ch_SocketDispatcher_write0--------------------\n");
     jint fd = fdval(env, fdo);
     void *buf = (void *)jlong_to_ptr(address);
 
-    ret urn convertReturnVal(env, write(fd, buf, len), JNI_FALSE);
+    return convertReturnVal(env, write(fd, buf, len), JNI_FALSE);
 }
 
 JNIEXPORT jlong JNICALL
 Java_sun_nio_ch_SocketDispatcher_writev0(JNIEnv *env, jclass clazz,
                                          jobject fdo, jlong address, jint len)
 {
+    printf("---------------SocketDispatcher.c.Java_sun_nio_ch_SocketDispatcher_writev0--------------------\n");
     jint fd = fdval(env, fdo);
     struct iovec *iov = (struct iovec *)jlong_to_ptr(address);
     return convertLongReturnVal(env, writev(fd, iov, len), JNI_FALSE);
