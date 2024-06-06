@@ -391,6 +391,7 @@ void Parse::load_interpreter_state(Node* osr_buf) {
 Parse::Parse(JVMState* caller, ciMethod* parse_method, float expected_uses)
   : _exits(caller)
 {
+  printf("------------------parse1.cpp.Parse()------------------\n")
   // Init some variables
   _caller = caller;
   _method = parse_method;
@@ -1201,6 +1202,7 @@ SafePointNode* Parse::create_entry_map() {
 // Emit any code needed in the pseudo-block before BCI zero.
 // The main thing to do is lock the receiver of a synchronized method.
 void Parse::do_method_entry() {
+  printf("--------parse1.cpp.do_method_entry().........\n");
   set_parse_bci(InvocationEntryBci); // Pseudo-BCP
   set_sp(0);                         // Java Stack Pointer
 

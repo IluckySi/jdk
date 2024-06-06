@@ -805,6 +805,7 @@ address TemplateInterpreterGenerator::generate_Float_floatToFloat16_entry() { re
 //
 
 address TemplateInterpreterGenerator::generate_native_entry(bool synchronized) {
+  printf("--------------templateInterpreterGenerator_arm.cpp.generate_native_entry------------------");
   // determine code generation flags
   bool inc_counter  = UseCompiler || CountCompiledCalls;
 
@@ -910,7 +911,7 @@ address TemplateInterpreterGenerator::generate_native_entry(bool synchronized) {
   __ check_extended_sp(Rtemp);
 
   // jvmti/dtrace support
-  __ notify_method_entry();
+  __ notify_method_entry();   // Ilucky: jvm & dtrace...
 #if R9_IS_SCRATCHED
   __ restore_method();
 #endif

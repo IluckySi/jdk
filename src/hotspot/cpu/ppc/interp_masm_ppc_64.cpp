@@ -2398,6 +2398,7 @@ void InterpreterMacroAssembler::notify_method_entry() {
   // entry/exit events are sent for that thread to track stack
   // depth. If it is possible to enter interp_only_mode we add
   // the code to check if the event should be sent.
+  printf("---------------interp_masm_ppc_64.cpp.notify_method_entry------------\n");
   if (JvmtiExport::can_post_interpreter_events()) {
     Label jvmti_post_done;
 

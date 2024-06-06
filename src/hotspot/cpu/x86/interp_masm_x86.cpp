@@ -1956,6 +1956,7 @@ void InterpreterMacroAssembler::notify_method_entry() {
   // Whenever JVMTI is interp_only_mode, method entry/exit events are sent to
   // track stack depth.  If it is possible to enter interp_only_mode we add
   // the code to check if the event should be sent.
+  printf("---------------interp_masm_x86.cpp.notify_method_entry------------\n");
   Register rthread = LP64_ONLY(r15_thread) NOT_LP64(rcx);
   Register rarg = LP64_ONLY(c_rarg1) NOT_LP64(rbx);
   if (JvmtiExport::can_post_interpreter_events()) {

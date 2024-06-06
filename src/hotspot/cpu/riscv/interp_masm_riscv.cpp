@@ -1484,6 +1484,7 @@ void InterpreterMacroAssembler::notify_method_entry() {
   // Whenever JVMTI is interp_only_mode, method entry/exit events are sent to
   // track stack depth.  If it is possible to enter interp_only_mode we add
   // the code to check if the event should be sent.
+  printf("---------------interp_masm_riscv.cpp.notify_method_entry------------\n");
   if (JvmtiExport::can_post_interpreter_events()) {
     Label L;
     lwu(x13, Address(xthread, JavaThread::interp_only_mode_offset()));

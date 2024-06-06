@@ -2142,7 +2142,7 @@ void InterpreterMacroAssembler::verify_oop(Register reg, TosState state) {
 // }
 
 void InterpreterMacroAssembler::notify_method_entry() {
-
+  printf("---------------interp_masm_s390.cpp.notify_method_entry------------\n");
   // JVMTI
   // Whenever JVMTI puts a thread in interp_only_mode, method
   // entry/exit events are sent for that thread to track stack
