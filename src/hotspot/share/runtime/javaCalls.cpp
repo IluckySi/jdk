@@ -335,7 +335,7 @@ void JavaCalls::call(JavaValue* result, const methodHandle& method, JavaCallArgu
     if(strcmp(method->name()->as_C_string(), business) == 0 || // method_name=business|beginCycle|beginRecursion|httpurlconnection
         strcmp(method->name()->as_C_string(), beginCycle) == 0 ||
                  strcmp(method->name()->as_C_string(), beginRecursion) == 0 ||
-                                strcmp(method->name()->as_C_string(), httpurlconnection) == 0) {
+                                strcmp(method->name()->as_C_string(), httpurlconnection) == 0)g {
         printf("------------JavaCalls::call as_C_string is %s---------------------\n", method->name()->as_C_string());
     }
 
