@@ -343,7 +343,7 @@ void JavaCalls::call(JavaValue* result, const methodHandle& method, JavaCallArgu
 }
 
 void JavaCalls::call_helper(JavaValue* result, const methodHandle& method, JavaCallArguments* args, TRAPS) {
-  printf("------------JavaCalls::call_helper name is %s---------------------\n", method->name()->as_C_string());
+  // printf("------------JavaCalls::call_helper name is %s---------------------\n", method->name()->as_C_string());
   JavaThread* thread = THREAD;
   assert(method.not_null(), "must have a method to call");
   assert(!SafepointSynchronize::is_at_safepoint(), "call to Java code during VM operation");
