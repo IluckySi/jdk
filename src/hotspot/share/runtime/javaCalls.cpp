@@ -328,10 +328,10 @@ Handle JavaCalls::construct_new_instance(InstanceKlass* klass, Symbol* construct
 void JavaCalls::call(JavaValue* result, const methodHandle& method, JavaCallArguments* args, TRAPS) {
   //  printf("------------JavaCalls::call as_C_string is %s---------------------\n", method->name()->as_C_string());
 //  printf("------------JavaCalls::call as_klass_external_name is %s---------------------\n", method->name()->as_klass_external_name());
-  if(method->name()->as_C_string() == "method_name" || // method_name=business|beginCycle|beginRecursion|httpurlconnection
-      method->name()->as_C_string() == "beginCycle" ||
-      method->name()->as_C_string() == "beginRecursion" ||
-      method->name()->as_C_string() == "httpurlconnection") {
+  if(strcmp(method->name()->as_C_string(), "business") || // method_name=business|beginCycle|beginRecursion|httpurlconnection
+        strcmp(method->name()->as_C_string(), "beginCycle") ||
+                 strcmp(method->name()->as_C_string(), "beginRecursion") ||
+                                strcmp(method->name()->as_C_string(), "httpurlconnection")) {
       printf("------------JavaCalls::call as_C_string is %s---------------------\n", method->name()->as_C_string());
   }
 
